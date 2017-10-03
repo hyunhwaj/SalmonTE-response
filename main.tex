@@ -69,18 +69,23 @@ We thank the reviewer for the time spent and positive feedback.
 \end{response}
 \begin{response}{Presentation: This article is very well written. It flows well and pleasant to read. The figures, tables, and equations are nicely presented and helpful. The scope of the approach is clearly stated but the limitations are not discussed specifically. The article compared their SalmonTE pipeline to TEtranscripts and showed that the quantification performance is comparable but at a much less computational cost. 
 It would be helpful to extend the discussion on the methodological differences between those two approaches and explain the improved computational efficiency.}
-To address the reviewer's concern, we have added a paragraph which describes differences between SalmonTE and TEtranscripts in the method section.
+To address the reviewer's concern, we have added a paragraph highlighting the differences between SalmonTE and TEtranscripts in the method section.
 \\
 
-\textbf{[In the revised manuscript]} 
+\textbf{[In the revised manuscript]}  \\
 \textbf{(In the last paragraph of page 2)} 
 
 \textcolor{red}{
-The proposed pipeline consists of three parts: library preparation, quantification, and statistical analysis (Figure 1). To increase the usability and to enable parallel processing for multiple RNA-seq reads files, we adopted the Snakemake workflow system and wrote a script based on the execution rule of Snakemake for the TE quantification.$^{21}$ In contrast to TEtranscripts, SalmonTE starts with raw RNA-seq files, and does not need any additional pre-processing for a given sequence file. Moreover, TEtranscripts requires a modified GTF files based on RepeatMasker database.$^{22}$ SalmonTE only needs the FASTA file of cDNA (complementary DNA) sequences of each TE. The entire source code and executable scripts are available at https://github.com/hyunhwaj/SalmonTE.}
+The proposed pipeline consists of three parts: library preparation, quantification, and statistical analysis (Figure 1). 
+    To increase the usability and to enable parallel processing for multiple RNA-seq reads files, we adopted the Snakemake workflow system and wrote a script based on the execution rule of Snakemake for the TE quantification.$^{21}$ 
+    In contrast to TEtranscripts, 
+    SalmonTE starts with raw RNA-seq files, and does not need any additional pre-processing for a given sequence file. 
+    Moreover, TEtranscripts requires a modified GTF files based on RepeatMasker database.$^{22}$ SalmonTE only needs the FASTA file of cDNA (complementary DNA) sequences of each TE. The entire source code and executable scripts are available at https://github.com/hyunhwaj/SalmonTE.
+}
 
 \end{response}
 \begin{response}{Significance: Through the comparisons with the most widely used approach, it was shown that the new proposed pipeline can achieve comparable accuracy. The proposed approach also has the potential to scale up for larger NGS datasets.}
-We appreciate the reviewer's reading and positive assessment of our manuscript.
+We thank the reviewer for the time spent  and positive feed back.
 \end{response}
 \begin{response}{Originality: The core algorithm Salmon was proposed previously by another research group so the originality of this article is limited. However it proposed a new bioinformatics pipeline that was shown to accelerate TE quantification. It will be a nice addition to the research community.}
  
@@ -93,17 +98,17 @@ We appreciate the reviewer for the positive assessment.
 
 \Reviewer{\#2}
 \begin{response}{Appropriateness for PSB: This is an interesting paper, but I’m not sure if this is relevant to the "Challenges of Pattern Recognition in Biomedical Data" session.}
-We partially agree with the reviewer's concern for the relevance of the section, but we believe that our manuscript is appropriate to submit this section due to following reasons:
+We agree with the reviewer's concern regarding the relevance of the manuscript to the "Challenges of Pattern Recognition in Biomedical Data" section. However, we also believe that our manuscript is appropriate for this section due to the following reasons:
 
 \begin{enumerate}
-\item Transposon element can be considered as a pattern on the genome, and the quantification of the pattern from RNA-seq is very challenging because it is repetitive and causes a computational problem.
+\item TE can be considered as a pattern on the genome, and the quantification of the pattern from RNA-seq is quite challenging because it is repetitive and causes computational problems.
 \item We also discussed the application of our pipeline to a large-scale dataset
 in agreement with one of the session interests 
 ``Challenges of computational resource requirements for large-scale and high-dimensionality data analysis.''
 \end{enumerate}
 \end{response}
 \begin{response}{Presentation: In general, there are appropriate tables and figures. However, authors need to provide more detailed description in the legend for each figure. Additionally, it needs more proof-readings since there are a few typos and grammar mistakes.}
-We have carefully revised the entire manuscript to provide more detail on each figure.
+We carefully revised the manuscript as the reviewer suggested. 
 \end{response}
 
 \begin{response}{Significance: Identifying/quantifying transposable elements is an important task. Biologically, transposable elements play important roles in several diseases. In addition, there was a great improvement in the context of computationally advance.}
@@ -154,7 +159,7 @@ We appreciate the reviewer's reading and positive assessment of our manuscript.
 
 \begin{response}{Appropriateness for PSB: While it is clear the authors made a significant advance in the area of quantifying TEs from RNA-seq data, it was not clear that this leads to any new biological conclusions.}
 The focus of this manuscript is to develop a new bioinformatics tool to identify and quantify transposable elements from 
-transcriptome data.  We appreciate the reviewer's comment that our tool is a significant advance in this area.  The discovery of new biology is out of the scope for this work. But we do have another manuscript under-review where we applied our method to systematically identify new TE patterns in Alzheimer's Disease.
+transcriptome data.  We appreciate the reviewer's comment that our tool is a significant advance in this area.  The discovery of new biology is beyond the scope for this work. But we do have another manuscript under-review where we applied our method to systematically identify new TE patterns in Alzheimer's Disease.
 \end{response}
 
 
@@ -169,36 +174,50 @@ We are sorry for the typos in the paper.  We have corrected all the grammar erro
 \begin{response}{
 I thought the methods were poorly described for parts 2.1 and 2.2. It was very difficult to make sense of what was being described. The results need to be described better. My advice would be to describe your reasoning as to why the analysis was done, how it was performed, the result and what is says about the method and biology. This was not always stated, but should have been or made more clear.}
 
-We have completely revised \textbf{2.1.} and  \textbf{2.2.} to help better understanding of mathematical details about the quantification algorithm.\\
+We have completely revised \textbf{2.1.} and  \textbf{2.2.} to help better understanding of our pipeline\\
 
 
 \textbf{[In the revised manuscript]} 
 
+\textbf{(The caption of Figure 1)}
+
+\textcolor{red}{
+An illustration of the SalmonTE pipeline. Left Panel: Input from Repbase to build the mapping index, raw FASTQ file, and covariates for statistical testing. Middle Panel: The workflow of SalmonTE consists of three parts: building the index based on RepBase or user-input cDNA sequences of TEs, quantification based on FASTQ file, and statical test through the generalized linear model or differential expression analysis. Right Panel: Example output including the statistical report and box plot on estimated log2 fold-change.
+}
+
 \textbf{(The paragraph of ``2.1. Transposable Element Library Preparation'' in page 3)}
 
 \textcolor{red}{
-As we mentioned earlier, SalmonTE needs a library of TE which consists of FASTA file of cDNA sequences to create an index for the TE quantification. SalmonTE provides Salmon index files of TE libraries of Homo sapiens and Drosophila melanogaster. We introduce how we generate the index files in this subsection. First, we collected FASTA files of the TE cDNA sequences for Homo sapiens and Drosophila melanogaster from Repbase (version 22.06).$^{22}$ We hypothesized that it is hard to estimate several TEs which replicate without an RNA intermediate from RNA-seq sample, so we have excluded those kinds of elements: simple repeats and multi-copy genes, and DNA transposable. After collecting the cDNA sequences, we manually curated clades of each TE based on the repeat class annotation of Repbase.
-As a result, the generated TE library index files contains 687 TEs for Homo sapiens and 163 TEs for Drosophila melanogaster.}
+To build the index library for the quasi-mapping, SalmonTE takes the FASTA file of cDNA sequences from TE databases such as Repbase (version 22.06).23 In the current version, the index files for Homo sapiens and Drosophila melanogaster are available. We reasoned that it is hard to estimate TEs which replicate without an RNA intermediate from RNA-seq sample.
+Therefore, we excluded the following elements: simple repeats and multi-copy genes, and DNA transposable. After collecting the cDNA sequences, we manually curated clades of each TE based on the repeat class annotation from Repbase.
+As a result, the generated TE library index database contains 687 TEs for Homo sapiens and 163 TEs for Drosophila melanogaster.
+
+}
+
+\textbf{(``2.2. Salmon quantification algorithm'' in page 3-4, is not appended here)}
 
 \end{response}
 
 \begin{response}{Significance: While it is important to understand how TEs are connected to disease, it is unclear how the methodology was able to illustrate that. I think the authors could have illustrated the biological significance by comparing their tool to another tool and illustrate they reduced the false discovery rate of detecting TEs. Why not perform a new analysis that was previously unattainable to understand when quantification took a long time? Interestingly, the main motivation for speeding things up was so it could scale but I don’t really see them illustrate using their method in a big meta-analysis. }
 
-The main focus of our manuscript is to develop a tool that is fast and accurate.  Meta-analysis on large dataset is out of the scope.  We do have another manuscript under-review where a meta-analysis on AD transcriptome is carried out and new biology was discovered and validated using model organisms.  
 
-The lack of meta-studies in the area of TE analysis is primary due to the challenge of slow running time.  Armed with this new tool, we expect to see many labs running their own meta analysis without the need of super computers. 
+    Our main focus in this manuscript is to develop a fast yet accurate tool that can potentially accelerate large scale data integration studies,  conducting a meta-analysis  
+     on large dataset is out of the scope.  We do have another manuscript under-review where a meta-analysis on AD transcriptome is carried out and new biology was discovered and validated using model organisms.  
+
+The lack of meta-studies in the area of TE analysis is primary due to the challenge of slow running time.  Equiped  with this new tool SalmonTE, we expect to see many meta analysis stuides without the need of super computers. 
 \end{response}
 
 \begin{response}{Originality: The authors do compare their method to a similar method and find it was faster but didn’t quantify TEs any better.}
-% Showing example Salmon and Kalisto, add a sentence 
+The main focus of this manuscript is to solve the computational bottle neck in TE quantification and not to redefine TE quantification.
 The key challenge here is the speed.  The state of the art approach runs slow and it will take a couple of hours for a single sample of a standard RNA-seq dataset. 
 Like many great bioinformatics tools, our main contribution is the speed.  With this faster tool, we can now analyze many large datasets. 
 
-To address the reviewer's concern on accuracy, we also included a new figure and a table in which we compared SalmonTE to other methods.  This new result demonstrates that SalmonTE outperformed all other methods in TE quantification accuracy. 
+To address the reviewer's concern on accuracy, we also included a new figure and a table in which we compared SalmonTE to other methods.  
+This new result demonstrates that SalmonTE outperformed all other methods in TE quantification accuracy. 
 \end{response}
 
 \begin{response}{Additional Comments for the Authors: The approach seemed to be implemented well but the methods section was very difficult to understand.}
-We have carefully revised the method section. We also changed the titles of each result section to reflect the findings from our experiments. 
+We carefully revised the manuscript as suggested. We changed the titles of the results section to reflect our findings and conclusions as follows:
 
 \textcolor{red}{
 \begin{itemize}
@@ -211,12 +230,14 @@ We have carefully revised the method section. We also changed the titles of each
 
 \begin{response}{
 Minor comments: Abstract, neurodegenerative is spelled wrong. Although most of TE studies contain a few RNA-seq... should be Although most of TE studies only contain a few RNA-seq... 
+}
+We carefully corrected the typographic errors and other made other changes as suggested.
+\end{response}
 
-I would recommend re-arranging the introduction to discuss the meta-analysis then get into the details of scaling. It would be better to describe what is motivating you to do the study then get into the scaling. }
-We fixed the typo of `neurodegenerative' and correct the sentence starts with `Although most of TE studies\dots'
-
-We also added the rationale for meta-analysis in the introduction. 
-% Have to arrange the introduction
+\begin{response}{
+I would recommend re-arranging the introduction to discuss the meta-analysis then get into the details of scaling. It would be better to describe what is motivating you to do the study then get into the scaling. 
+}
+We revised the introduction section as the reviwer suggested.
 \end{response}
 
 \end{document}
